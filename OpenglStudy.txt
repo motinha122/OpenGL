@@ -10,12 +10,46 @@ Compilation C++
 ########################################################################
 
 >White triangle on screen
+
 /* Render here */
 
-glBegin(GL_TRIANGLES);
-glVertex2f(-0.5f, -0.5f);
-glVertex2f(0.0f, 0.5f);
-glVertex2f(0.5f, -0.5f);
-glEnd();
+	glBegin(GL_TRIANGLES);
+	glVertex2f(-0.5f, -0.5f);
+	glVertex2f(0.0f, 0.5f);
+	glVertex2f(0.5f, -0.5f);
+	glEnd();
 
+########################################################################
+
+OpenGL 
+
+GLEW - Modern OpenGL
+GLFW - Legacy OpenGL
+
+https://docs.gl
+
+OpenGL it's a state machine 
+
+glBindBuffer -> looks like photoshop layers system
+
+########################################################################
+
+>Create a Buffer with the vertex positions 
+
+/* Triangle Positions */
+    float positions[6] = {
+        -0.5f, -0.5f,
+         0.0f,  0.5f,
+         0.5f, -0.5f,
+    }; // each index is a vertex, theres 3 indexes here 
+ 
+/* Buffer */
+    unsigned int buffer;
+    glGenBuffers(1, &buffer);
+    glBindBuffer(GL_ARRAY_BUFFER, buffer);
+    glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float),positions,GL_STATIC_DRAW);
+
+/* Inside draw loop */
+
+        glDrawArrays(GL_TRIANGLES, 0 , 3);
 
